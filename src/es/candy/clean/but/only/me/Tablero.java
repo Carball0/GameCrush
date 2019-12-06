@@ -4,8 +4,9 @@ package es.candy.clean.but.only.me;
  */
 
 public class Tablero {
-	private int size;
-	private Color[][] tablero = new Color[5][5];
+	private int size = 100;
+	private Color[][] tablero = new Color[size][size];
+	private int boardColors = 3;
 	Color black = new Color(0);
 	Color red = new Color(1);
 	Color green = new Color(2);
@@ -16,44 +17,53 @@ public class Tablero {
 	Color white = new Color(7);
 	
 	public Tablero() {
-		this.size = 5;
+		//this.size = getSize();
 	}
+	//Board generator
 	public Tablero(int size) {
 		this.size = size;
-		tablero = new Color[size][size];
-			for(int i = 1; i < size; i++) {
-				for(int j=1; j < size; j++) {
-					tablero[i][j] = red;
-					for(int v = 1; v < size; v++) {
-						tablero[i][0] = yellow;
-						for(int w = 1; w < size; w++) {
-							tablero[0][j] = red;
-						}
-					}
-				}
+		for(int i = 0; i < size; i++) {
+			for(int j = 1; j < size; j++) {
+				System.out.println(tablero[i][j]);
 			}
+		}
 	}
-	public void printBoard() {
-		
+	//getters and setters
+	public void setSize(int size) {
+		this.size = size;
+	}
+	public int getSize() {
+		return this.size;
+	}
+	public void setBoardColors(int boardColors) {
+		this.boardColors = boardColors;
+	}
+	public int getBoardColors() {
+		return this.boardColors;
+	}
+
+	//Random board generator and printer
+	public void printRandomBoard() {
+		System.out.println(" ");
 	    for(int i=0; i < size; i++) {
 	        System.out.print((" "+"|" + (i+1)));
 	    }
 	    System.out.println();
 	    for(int i=0; i < size; i++) {
-	    	System.out.println(" ");
+	    	System.out.println("");
 	        System.out.printf("%2d\t", i+1);
-	        for(int j=0; j < size; j++) {
-	            System.out.print((tablero[i][j] = red)/* + "\t"*/);
+	        if (size%2==0) {	//if size is par/even, then size/2 and the following code works (does not work for uneven/odd numbers)
+	        for(int j=0; j < size/2; j++) {
+	        	j = j++;
+	        	int random = (int)Math.floor(Math.random()*(boardColors)+1);
+	        	Color randomColor = new Color(random);
+	        	
+	        		System.out.print(tablero[i][j] = randomColor);
+	        		System.out.print(tablero[i+1][j+1] = randomColor);
+	        	}
+	        } else {
+	        	System.out.println("There is no method for uneven numbers :(");
 	        }
 	    }
 	}
-	public int getSize() {
-		return this.size;
-	}
-	public void setSize(int size) {
-		this.size = size;
-	}
-	//public Tablero newBoard() {
-		
-	//}
 }
