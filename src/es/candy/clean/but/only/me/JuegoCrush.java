@@ -1,7 +1,8 @@
 package es.candy.clean.but.only.me;
 
 public class JuegoCrush {
-	private int size;
+	private int size = 5;
+	private int boardColors;
 	Color black = new Color(0);
 	Color red = new Color(1);
 	Color green = new Color(2);
@@ -19,38 +20,37 @@ public class JuegoCrush {
 	public int getSize() {
 		return this.size;
 	}
+	public void setBoardColors(int boardColors) {
+		this.boardColors = boardColors;
+	}
+	public int getBoardColors() {
+		return this.boardColors;
+	}
+	
+	//return a random numbers for random colors
+	public int randomNumber() {
+		int random = (int)Math.floor(Math.random()*(boardColors)+1);
+		return random;
+	}
+	
 	//method that tests the Color class functionality
 	public void colorTest() {
-		Tablero tablero = new Tablero();
-		Color[][] tableroo1 = new Color[tablero.getSize()][tablero.getSize()];
-		if(tablero.getSize()>0) {
-			tableroo1[0][0] = red;
-			if (getSize()>1) {
-				tableroo1[0][1] = green;
-				if (getSize()>2) {
-					tableroo1[0][2] = yellow;
-					if (getSize()>3) {
-						tableroo1[0][3] = blue;
-						if (getSize()>4) {
-							tableroo1[0][4] = purple;
-							if (getSize()>5) {
-								tableroo1[0][5] = cyan;
-								if (getSize()>6) {
-									tableroo1[0][6] = white;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		
-		System.out.println("Got size: "+getSize());
-		for (int i=0; i<(getSize()); i++) {
-			if (getSize()<=6) {		//if getsize() is greater than 6, it throws null
-			System.out.println(tableroo1[0][i]);
-			}
+		Color[][] tableroo1 = new Color[1][8];
+		tableroo1[0][0] = red;
+		tableroo1[0][1] = green;
+		tableroo1[0][2] = yellow;
+		tableroo1[0][3] = blue;
+		tableroo1[0][4] = purple;
+		tableroo1[0][5] = cyan;
+		tableroo1[0][6] = white;
+		tableroo1[0][7] = black;
+		System.out.println("\n"+"Input size: "+getSize()+"\nPrinting available colors");
+		for (int i=0; i<8; i++) {
+			System.out.print(tableroo1[0][i]);
 		}
 	}
-
+	//method that declares the game finished
+	public boolean isGameFinished() {
+		return false;
+	}
 }
