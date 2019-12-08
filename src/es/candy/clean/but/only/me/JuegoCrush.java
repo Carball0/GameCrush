@@ -1,7 +1,7 @@
 package es.candy.clean.but.only.me;
 
 public class JuegoCrush {
-	private int size = 5;
+	private int size;
 	private int boardColors;
 	Color black = new Color(0);
 	Color red = new Color(1);

@@ -4,8 +4,8 @@ package es.candy.clean.but.only.me;
  */
 
 public class Tablero {
-	private int size = 5;
-	private Color[][] tablero = new Color[size][size];
+	private int size;
+	private Color[][] tablero;
 	JuegoCrush game = new JuegoCrush();
 	private int boardColors;
 	Color black = new Color(0);
@@ -20,10 +20,11 @@ public class Tablero {
 	public Tablero() {
 	}
 	//getters and setters
-	public void setSize(int size) {
+	public void setArraySize(int size) {
 		this.size = size;
+		tablero = new Color[size][size];
 	}
-	public int getSize() {
+	public int getArraySize() {
 		return this.size;
 	}
 	public void setBoardColors(int boardColors) {
@@ -46,12 +47,16 @@ public class Tablero {
 	public void printRandomBoard() {
 		System.out.println(" ");
 	    for(int i=0; i < size; i++) {
-	        System.out.print((" "+"|" + (i+1)));
+	    	if (i==0) {
+	    		System.out.print(("    "+"|" + (i)));
+	    	} else {
+	        System.out.print(("|" + (i)));
+	    	}
 	    }
 	    System.out.println();
 	    for(int i=0; i < size; i++) {
 	    	System.out.println("");
-	        System.out.printf("%2d\t", i+1);
+	        System.out.printf("%2d\t", i);
 	        for(int j=0; j < size; j++) {
 	        	int random = (int)Math.floor(Math.random()*(boardColors)+1);
 	        	Color randomColor = new Color(random);
@@ -62,14 +67,18 @@ public class Tablero {
 	public void printBoardAgain(Color[][] array) {
 		System.out.println(" ");
 	    for(int i=0; i < array.length; i++) {
-	        System.out.print((" "+"|" + (i+1)));
+	    	if (i==0) {
+	    		System.out.print(("    "+"|" + (i)));
+	    	} else {
+	        System.out.print(("|" + (i)));
+	    	}
 	    }
 	    System.out.println();
 	    for(int i=0; i < array.length; i++) {
 	    	System.out.println("");
-	        System.out.printf("%2d\t", i+1);
+	        System.out.printf("%2d\t", i);
 	        for(int j=0; j < array.length; j++) {
-	        	System.out.print(tablero[i][j]);
+	        	System.out.print(array[i][j]);
 	        }
 	    }
 	}

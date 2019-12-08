@@ -39,7 +39,7 @@ public class Casilla {
 		int rowaux = rowInput - 1;
 		int columnaux = columnInput-1;
 		if (columnaux>=0 && rowaux>=0 && columnaux<tableroInput.length && rowaux<tableroInput.length) {
-			while (tableroInput[rowaux][columnaux]==tableroInput[rowaux+1][columnaux]) {
+			while (tableroInput[rowaux][columnaux].equals(tableroInput[rowaux+1][columnaux]) && tableroInput[rowaux][columnaux]!=black) {
 				tableroInput[rowaux][columnaux]=black;
 				tableroInput[rowaux+1][columnaux]=black;
 			}
@@ -49,7 +49,7 @@ public class Casilla {
 		int rowaux = rowInput - 1;
 		int columnaux = columnInput-1;
 		if (columnaux>=0 && rowaux>=0 && columnaux<tableroInput.length && rowaux<tableroInput.length) {
-			if (tableroInput[rowaux][columnaux]==tableroInput[rowaux-1][columnaux]) {
+			while (tableroInput[rowaux][columnaux].equals(tableroInput[rowaux-1][columnaux]) && tableroInput[rowaux][columnaux]!=black) {
 				tableroInput[rowaux][columnaux]=black;
 				tableroInput[rowaux-1][columnaux]=black;
 			}
@@ -59,7 +59,7 @@ public class Casilla {
 		int rowaux = rowInput - 1;
 		int columnaux = columnInput-1;
 		if (columnaux>=0 && rowaux>=0 && columnaux<tableroInput.length && rowaux<tableroInput.length) {
-			if (tableroInput[rowaux][columnaux]==tableroInput[rowaux][columnaux+1]) {
+			while (tableroInput[rowaux][columnaux].equals(tableroInput[rowaux][columnaux+1]) && tableroInput[rowaux][columnaux]!=black) {
 				tableroInput[rowaux][columnaux]=black;
 				tableroInput[rowaux-1][columnaux]=black;
 			}
@@ -69,7 +69,7 @@ public class Casilla {
 		int rowaux = rowInput - 1;
 		int columnaux = columnInput-1;
 		if (columnaux>=0 && rowaux>=0 && columnaux<tableroInput.length && rowaux<tableroInput.length) {
-			if (tableroInput[rowaux][columnaux]==tableroInput[rowaux][columnaux-1]) {
+			while (tableroInput[rowaux][columnaux].equals(tableroInput[rowaux][columnaux-1]) && tableroInput[rowaux][columnaux]!=black) {
 				tableroInput[rowaux][columnaux]=black;
 				tableroInput[rowaux-1][columnaux]=black;
 			}
