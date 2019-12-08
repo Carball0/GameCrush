@@ -23,27 +23,25 @@ public class MainCrush {
 			game.setSize(readSize);
 			tablero.setArraySize(readSize);
 			System.out.println(tablero.getArray().length);
-			tablero.setBoardColors(3);
-			game.setBoardColors(3);
+			tablero.setBoardColors(2);
+			game.setBoardColors(2);
 			tablero.printRandomBoard();
 			while (game.isGameFinished()==false) {
 				System.out.println("Row:\n");
 				int readRow = Teclado.readInteger();
 				System.out.println("Column:\n");
 				int readColumn = Teclado.readInteger();
-				box.compareRightColor(tablero.getArray(), readRow, readColumn);
-				box.compareLeftColor(tablero.getArray(), readRow, readColumn);
-				//box.compareBottomColor(tablero.getArray(), readRow, readColumn);
-				//box.compareTopColor(tablero.getArray(), readRow, readColumn);
-				System.out.print("\nRow input:"+readRow+"   Column input:"+readColumn+"\n");	//test - Remove
-				System.out.println("ArrayLength:"+tablero.getArrayLength());					//test - Remove
-				System.out.println("Selected:" +tablero.getArray()[readRow][readColumn]);		//test - Remove
-				//System.out.println("Right +1 :" +tablero.getArray()[readRow+1][readColumn]);	//test - Remove
-				//System.out.println("Left -1:" +tablero.getArray()[readRow-1][readColumn]);	//test - Remove
-				tablero.printBoardAgain(tablero.getArray());
+				Color[][] tableroaux1 = box.compareRightColor(tablero.getArray(), readRow, readColumn);
+				Color[][] tableroaux2 = box.compareLeftColor(tableroaux1, readRow, readColumn);
+				System.out.print("\nRow input:"+readRow+"  Column input:"+readColumn+"\n");		//test - Remove
+				System.out.println("ArrayLength:"+tableroaux2.length);					//test - Remove
+				System.out.println("Selected:" +tableroaux2[readRow][readColumn]);		//test - Remove
+				//System.out.println("Right +1 :" +tablero.getArray()[readRow][readColumn+1]);	//test - Remove
+				//System.out.println("Left -1:" +tablero.getArray()[readRow][readColumn-1]);	//test - Remove
+				tablero.printBoardAgain(tableroaux2);
 			}
 		 }
-		 if (readOption!=1&&readOption!=2) {
+		 if (readOption!=1 && readOption!=2) {
 			 System.out.println("Invalid option. Closing program");
 		 }
 

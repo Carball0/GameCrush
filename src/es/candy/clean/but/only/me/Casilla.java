@@ -34,52 +34,27 @@ public class Casilla {
 	public int getArray() {
 		return this.column;
 	}
-	
-	public void compareRightColor(Color[][] tableroInput, int rowInput, int columnInput) {
-		int rowaux = rowInput - 1;
-		int columnaux = columnInput-1;
-		if (columnaux>=0 && rowaux>=0 && columnaux<tableroInput.length && rowaux<tableroInput.length) {
-			while (tableroInput[rowaux][columnaux].equals(tableroInput[rowaux+1][columnaux]) && tableroInput[rowaux][columnaux]!=black) {
-				tableroInput[rowaux][columnaux]=black;
-				tableroInput[rowaux+1][columnaux]=black;
+
+	public Color[][] compareRightColor(Color[][] tableroInput, int rowInput, int columnInput) {
+		int i = 1;
+		while (tableroInput[rowInput][columnInput].equals(tableroInput[rowInput][columnInput+1])==true && tableroInput[rowInput][columnInput] != black) {
+			if (columnInput<tableroInput.length-1 && rowInput<tableroInput.length-1 && columnInput+i<tableroInput.length-1) {
+			tableroInput[rowInput][columnInput] = black;
+			tableroInput[rowInput][columnInput + i] = black;
+			i++;
 			}
 		}
+	return tableroInput;
 	}
-	public void compareLeftColor(Color[][] tableroInput, int rowInput, int columnInput) {
-		int rowaux = rowInput - 1;
-		int columnaux = columnInput-1;
-		if (columnaux>=0 && rowaux>=0 && columnaux<tableroInput.length && rowaux<tableroInput.length) {
-			while (tableroInput[rowaux][columnaux].equals(tableroInput[rowaux-1][columnaux]) && tableroInput[rowaux][columnaux]!=black) {
-				tableroInput[rowaux][columnaux]=black;
-				tableroInput[rowaux-1][columnaux]=black;
+	public Color[][] compareLeftColor(Color[][] tableroInput, int rowInput, int columnInput) {
+		int i = 1;
+		while (tableroInput[rowInput][columnInput].equals(tableroInput[rowInput][columnInput-1])==true) {
+			if (columnInput<tableroInput.length-1 && rowInput<tableroInput.length-1 && columnInput+i<tableroInput.length-1) {
+				tableroInput[rowInput][columnInput] = black;
+				tableroInput[rowInput][columnInput + i] = black;
+				i++;
 			}
 		}
-	}
-	public void compareBottomColor(Color[][] tableroInput, int rowInput, int columnInput) {
-		int rowaux = rowInput - 1;
-		int columnaux = columnInput-1;
-		if (columnaux>=0 && rowaux>=0 && columnaux<tableroInput.length && rowaux<tableroInput.length) {
-			while (tableroInput[rowaux][columnaux].equals(tableroInput[rowaux][columnaux+1]) && tableroInput[rowaux][columnaux]!=black) {
-				tableroInput[rowaux][columnaux]=black;
-				tableroInput[rowaux-1][columnaux]=black;
-			}
-		}
-	}
-	public void compareTopColor(Color[][] tableroInput, int rowInput, int columnInput) {
-		int rowaux = rowInput - 1;
-		int columnaux = columnInput-1;
-		if (columnaux>=0 && rowaux>=0 && columnaux<tableroInput.length && rowaux<tableroInput.length) {
-			while (tableroInput[rowaux][columnaux].equals(tableroInput[rowaux][columnaux-1]) && tableroInput[rowaux][columnaux]!=black) {
-				tableroInput[rowaux][columnaux]=black;
-				tableroInput[rowaux-1][columnaux]=black;
-			}
-		}
+	return tableroInput;
 	}	
-	public void compareColors() {
-		
-	}
-	public boolean removeBox() {
-		
-		return false;
-	}
 }

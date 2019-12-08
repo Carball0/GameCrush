@@ -44,7 +44,7 @@ public class JuegoCrush {
 		tableroo1[0][5] = cyan;
 		tableroo1[0][6] = white;
 		tableroo1[0][7] = black;
-		System.out.println("\n"+"Input size: "+getSize()+"\nPrinting available colors");
+		System.out.println("\n"+"Input size: " + getSize() + "\nPrinting available colors");
 		for (int i=0; i<8; i++) {
 			System.out.print(tableroo1[0][i]);
 		}
