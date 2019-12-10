@@ -1,6 +1,9 @@
 package es.candy.clean.but.only.me;
+import org.apache.logging.log4j.*;
 
 public class MainCrush {
+	static final Logger logger = LogManager.getLogger(MainCrush.class);
+	
 	public static void main(String[] args) {
 		Tablero tablero = new Tablero();
 		JuegoCrush game = new JuegoCrush();
@@ -16,6 +19,7 @@ public class MainCrush {
 			
 			tablero.printRandomBoard();
 			game.colorTest();
+			logger.debug("Ended");
 		 }
 		 if (readOption==2) {	//Execute the program
 			System.out.println("Board Size:");
@@ -23,21 +27,19 @@ public class MainCrush {
 			game.setSize(readSize);
 			tablero.setArraySize(readSize);
 			System.out.println(tablero.getArray().length);
-			tablero.setBoardColors(2);
-			game.setBoardColors(2);
+			tablero.setBoardColors(1);
+			game.setBoardColors(1);
 			tablero.printRandomBoard();
 			while (game.isGameFinished()==false) {
 				System.out.println("Row:\n");
 				int readRow = Teclado.readInteger();
 				System.out.println("Column:\n");
 				int readColumn = Teclado.readInteger();
-				Color[][] tableroaux1 = box.compareRightColor(tablero.getArray(), readRow, readColumn);
-				Color[][] tableroaux2 = box.compareLeftColor(tableroaux1, readRow, readColumn);
+				Color[][] tableroaux1 = box.shootRightColor(tablero.getArray(), readRow, readColumn);
+				Color[][] tableroaux2 = box.shootLeftColor(tableroaux1, readRow, readColumn);
 				System.out.print("\nRow input:"+readRow+"  Column input:"+readColumn+"\n");		//test - Remove
-				System.out.println("ArrayLength:"+tableroaux2.length);					//test - Remove
-				System.out.println("Selected:" +tableroaux2[readRow][readColumn]);		//test - Remove
-				//System.out.println("Right +1 :" +tablero.getArray()[readRow][readColumn+1]);	//test - Remove
-				//System.out.println("Left -1:" +tablero.getArray()[readRow][readColumn-1]);	//test - Remove
+				System.out.println("ArrayLength:"+tableroaux2.length);							//test - Remove
+				System.out.println("Selected:" +tableroaux2[readRow][readColumn]);				//test - Remove
 				tablero.printBoardAgain(tableroaux2);
 			}
 		 }

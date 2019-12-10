@@ -1,4 +1,5 @@
 package es.candy.clean.but.only.me;
+import org.apache.logging.log4j.*;
 
 public class Casilla {
 	private int column;
@@ -35,26 +36,48 @@ public class Casilla {
 		return this.column;
 	}
 
-	public Color[][] compareRightColor(Color[][] tableroInput, int rowInput, int columnInput) {
-		int i = 1;
-		while (tableroInput[rowInput][columnInput].equals(tableroInput[rowInput][columnInput+1])==true && tableroInput[rowInput][columnInput] != black) {
-			if (columnInput<tableroInput.length-1 && rowInput<tableroInput.length-1 && columnInput+i<tableroInput.length-1) {
+	public boolean isSameColorRight(Color[][] tableroInput, int rowInput, int columnInput) {
+		boolean isSameColor = false;
+		if (columnInput<tableroInput.length-1 && rowInput<tableroInput.length-1 && tableroInput[rowInput][columnInput+1] != black) {
+			if (tableroInput[rowInput][columnInput].equals(tableroInput[rowInput][columnInput+1])==true && columnInput+1<=tableroInput.length-1) {
+				isSameColor = true;
+			} else {
+				isSameColor = false;
+			}
+		}
+		return isSameColor;
+	}
+	public boolean isSameColorLeft(Color[][] tableroInput, int rowInput, int columnInput) {
+		boolean isSameColor = false;
+		if (columnInput<tableroInput.length-1 && rowInput<tableroInput.length-1 && tableroInput[rowInput][columnInput-1] != black) {
+			if (tableroInput[rowInput][columnInput].equals(tableroInput[rowInput][columnInput-1])==true && columnInput-1>=0) {
+				isSameColor = true;
+			} else {
+				isSameColor = false;
+			}
+		}
+		return isSameColor;
+	}
+	public Color[][] shootRightColor(Color[][] tableroInput, int rowInput, int columnInput) {
+		boolean isSameColor = isSameColorRight(tableroInput, rowInput, columnInput);
+		int i = 0;
+		while (isSameColor==true && columnInput + i < tableroInput.length-1) {
 			tableroInput[rowInput][columnInput] = black;
 			tableroInput[rowInput][columnInput + i] = black;
 			i++;
-			}
+			isSameColor = isSameColorRight(tableroInput, rowInput, columnInput + i);
 		}
-	return tableroInput;
+		return tableroInput;
 	}
-	public Color[][] compareLeftColor(Color[][] tableroInput, int rowInput, int columnInput) {
-		int i = 1;
-		while (tableroInput[rowInput][columnInput].equals(tableroInput[rowInput][columnInput-1])==true) {
-			if (columnInput<tableroInput.length-1 && rowInput<tableroInput.length-1 && columnInput+i<tableroInput.length-1) {
-				tableroInput[rowInput][columnInput] = black;
-				tableroInput[rowInput][columnInput + i] = black;
-				i++;
-			}
+	public Color[][] shootLeftColor(Color[][] tableroInput, int rowInput, int columnInput) {
+		boolean isSameColor = isSameColorLeft(tableroInput, rowInput, columnInput);
+		int i = 0;
+		while (isSameColor==true && columnInput - i >= 0) {
+			tableroInput[rowInput][columnInput] = black;
+			tableroInput[rowInput][columnInput - i] = black;
+			i++;
+			isSameColor = isSameColorRight(tableroInput, rowInput, columnInput - i);
 		}
-	return tableroInput;
-	}	
+		return tableroInput;
+	}
 }

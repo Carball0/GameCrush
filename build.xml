@@ -4,23 +4,34 @@
     <property name="src" value="src"/>
     <property name="classes" value="classes"/>
     <property name="conf" value="etc"/>
+    <property name="lib" value="lib"/>
+
 
     <property name="paquetes" value="es.candy.clean.but.only.me"/>
-
+    
+	<path id="build.classpath">
+  		<fileset dir="${lib}">
+   	 		<include name="*.jar"/>
+  		</fileset>
+  		<pathelement path= "${build.dir}"/>
+	</path>
+	
     <target name="clean">
       <delete dir="${classes}"/>
     </target>
 
     <target name="compile" depends="clean">
       <mkdir dir="${classes}"/>
-      <javac includeantruntime="false" srcdir="${src}" destdir="${classes}"/>
+		<javac includeantruntime="false" destdir="classes" classpathref="build.classpath">
+    		<src path="src"/>
+  		</javac>
       <echo message="Compile successful"/>
     </target>
-
+    
     <target name="run" depends="compile">
-      <java classname="es.candy.clean.but.only.me.MainCrush">
+      <java classname="es.candy.clean.but.only.me.MainCrush" classpathref="build.classpath">
          <classpath>
-              <pathelement path="${classes}"/>
+			<pathelement path="${classes}"/>
          </classpath>
       </java>
     </target>

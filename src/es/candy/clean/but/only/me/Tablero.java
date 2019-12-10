@@ -1,4 +1,5 @@
 package es.candy.clean.but.only.me;
+import org.apache.logging.log4j.*;
 /*
  * @author Alejandro Carballo Casas
  */
@@ -45,15 +46,13 @@ public class Tablero {
 	
 	//Random board generator and printer
 	public void printRandomBoard() {
-		System.out.println(" ");
 	    for(int i=0; i < size; i++) {
 	    	if (i==0) {
-	    		System.out.print(("    "+"|" + (i)));
+	    		System.out.print("    " + (i));
 	    	} else {
-	        System.out.print(("|" + (i)));
+	        System.out.print((" " + (i)));
 	    	}
 	    }
-	    System.out.println();
 	    for(int i=0; i < size; i++) {
 	    	System.out.println("");
 	        System.out.printf("%2d\t", i);
@@ -65,15 +64,13 @@ public class Tablero {
 	    }
 	}
 	public void printBoardAgain(Color[][] array) {
-		System.out.println(" ");
 	    for(int i=0; i < array.length; i++) {
 	    	if (i==0) {
-	    		System.out.print(("    "+"|" + (i)));
+	    		System.out.print("    " + (i));
 	    	} else {
-	        System.out.print(("|" + (i)));
+	        System.out.print((" " + (i)));
 	    	}
 	    }
-	    System.out.println();
 	    for(int i=0; i < array.length; i++) {
 	    	System.out.println("");
 	        System.out.printf("%2d\t", i);

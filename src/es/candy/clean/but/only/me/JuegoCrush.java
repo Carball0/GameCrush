@@ -1,4 +1,5 @@
 package es.candy.clean.but.only.me;
+import org.apache.logging.log4j.*;
 
 public class JuegoCrush {
 	private int size;
