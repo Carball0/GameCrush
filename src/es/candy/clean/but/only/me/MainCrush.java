@@ -27,8 +27,8 @@ public class MainCrush {
 			game.setSize(readSize);
 			tablero.setArraySize(readSize);
 			System.out.println(tablero.getArray().length);
-			tablero.setBoardColors(1);
-			game.setBoardColors(1);
+			tablero.setBoardColors(2);
+			game.setBoardColors(2);
 			tablero.printRandomBoard();
 			while (game.isGameFinished()==false) {
 				System.out.println("Row:\n");
@@ -44,7 +44,7 @@ public class MainCrush {
 			}
 		 }
 		 if (readOption!=1 && readOption!=2) {
-			 System.out.println("Invalid option. Closing program");
+			 logger.fatal("Invalid option. Closing program");
 		 }
 
 	}

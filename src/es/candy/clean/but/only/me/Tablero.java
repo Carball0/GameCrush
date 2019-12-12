@@ -7,19 +7,9 @@ import org.apache.logging.log4j.*;
 public class Tablero {
 	private int size;
 	private Color[][] tablero;
-	JuegoCrush game = new JuegoCrush();
 	private int boardColors;
 	Color black = new Color(0);
-	Color red = new Color(1);
-	Color green = new Color(2);
-	Color yellow = new Color(3);
-	Color blue = new Color(4);
-	Color purple = new Color(5);
-	Color cyan = new Color(6);
-	Color white = new Color(7);
 	
-	public Tablero() {
-	}
 	//getters and setters
 	public void setArraySize(int size) {
 		this.size = size;
@@ -34,23 +24,39 @@ public class Tablero {
 	public int getBoardColors() {
 		return this.boardColors;
 	}
-	public void setArray(Color[][] array) {
-		this.tablero = array;
-	}
 	public Color[][] getArray() {
 		return this.tablero;
 	}
-	public int getArrayLength() {
-		return tablero.length;
-	}
 	
 	//Random board generator and printer
+	public boolean isSameColorRight(Color[][] tableroInput, int rowInput, int columnInput) {
+		boolean isSameColor = false;
+		if (columnInput<tableroInput.length-1 && rowInput<tableroInput.length-1 && tableroInput[rowInput][columnInput+1] != black) {
+			if (tableroInput[rowInput][columnInput].equals(tableroInput[rowInput][columnInput+1])==true && columnInput+1<=tableroInput.length-1) {
+				isSameColor = true;
+			} else {
+				isSameColor = false;
+			}
+		}
+		return isSameColor;
+	}
+	public boolean isSameColorLeft(Color[][] tableroInput, int rowInput, int columnInput) {
+		boolean isSameColor = false;
+		if (columnInput<tableroInput.length-1 && rowInput<tableroInput.length-1 && tableroInput[rowInput][columnInput-1] != black && columnInput-1<0) {
+			if (tableroInput[rowInput][columnInput].equals(tableroInput[rowInput][columnInput-1])==true && columnInput-1>=0) {
+				isSameColor = true;
+			} else {
+				isSameColor = false;
+			}
+		}
+		return isSameColor;
+	}
 	public void printRandomBoard() {
 	    for(int i=0; i < size; i++) {
 	    	if (i==0) {
 	    		System.out.print("    " + (i));
 	    	} else {
-	        System.out.print((" " + (i)));
+	        System.out.print(" " + (i));
 	    	}
 	    }
 	    for(int i=0; i < size; i++) {
