@@ -5,16 +5,16 @@ import org.apache.logging.log4j.*;
 /**
  * Class that creates the game with the parameters 
  * introduced by the user.
- * This class calls Tablero methods for erasing boxes
+ * This class calls Board methods for erasing boxes
  * It also return when the game has finished.
  * 
  * @version 1.0
  * @author Alejandro Carballo Casas
  */
 
-public class JuegoCrush {
+public class GameCrush {
 	
-	static final Logger logger = LogManager.getLogger(JuegoCrush.class);
+	static final Logger logger = LogManager.getLogger(GameCrush.class);
 
 	/**
 	 * 
@@ -22,7 +22,7 @@ public class JuegoCrush {
 	 * 
 	 */
 	
-	private Tablero tablero;
+	private Board board;
 								
 	/**
 	 * 
@@ -31,13 +31,13 @@ public class JuegoCrush {
 	 * 
 	 * @param size Dimensions of the board.
 	 * @param boardColors Number of colors that the board has. 
-	 * @throws CandyCleanException Receives an exception from class Tablero.
+	 * @throws CandyCleanException Receives an exception from class Board.
 	 */
 	
-	public JuegoCrush(int size, int boardColors) throws JuegoCrushException {
+	public GameCrush(int size, int boardColors) throws GameCrushException {
 		try {
-			this.tablero = new Tablero(size, boardColors);
-		} catch (JuegoCrushException msg) {
+			this.board = new Board(size, boardColors);
+		} catch (GameCrushException msg) {
 			System.out.println(msg.getMessage());
 		}	
 	}
@@ -48,8 +48,8 @@ public class JuegoCrush {
 	 * 
 	 */
 	
-	public JuegoCrush() {
-		this.tablero = new Tablero();
+	public GameCrush() {
+		this.board = new Board();
 	}
 	
 	/**
@@ -63,19 +63,19 @@ public class JuegoCrush {
 	 * user enters a row or a column which is not valid.
 	 */
 	
-	public void shootBox(int row, int column) throws JuegoCrushException {
-		int bounds = this.tablero.getDimensions() - 1;
+	public void shootBox(int row, int column) throws GameCrushException {
+		int bounds = this.board.getDimensions() - 1;
 		if (row >= 0 && column >= 0) {
-			if (row < this.tablero.getDimensions() && column < this.tablero.getDimensions()) {
-				this.tablero.shootColor(row, column);
-				this.tablero.stackEmptyBoxesAbove();
+			if (row < this.board.getDimensions() && column < this.board.getDimensions()) {
+				this.board.shootColor(row, column);
+				this.board.stackEmptyBoxesAbove();
 			} else {
 				logger.error("The user has entered an invalid number = Row:"+row+" and Column:"+column);
-				throw new JuegoCrushException("Invalid number: Enter a valid number between 0 and " + bounds);
+				throw new GameCrushException("Invalid number: Enter a valid number between 0 and " + bounds);
 			}
 		} else {
 			logger.error("The user has entered an invalid number = Row:"+row+" and Column:"+column);
-			throw new JuegoCrushException("Invalid number: Enter a valid number between 0 and " + bounds);
+			throw new GameCrushException("Invalid number: Enter a valid number between 0 and " + bounds);
 		}
 	}
 	
@@ -87,7 +87,7 @@ public class JuegoCrush {
 	 */
 	
 	public boolean isGameFinished() {
-		return tablero.isBoardEmpty();
+		return board.isBoardEmpty();
 	}
 	
 	/**
@@ -99,7 +99,7 @@ public class JuegoCrush {
 	 */
 	
 	public boolean isGameLost() {
-		return tablero.shootNotPossible();
+		return board.shootNotPossible();
 	}
 	
 	/**
@@ -110,6 +110,6 @@ public class JuegoCrush {
 	 */
 	
 	public String toString() {
-		return this.tablero.toString();
+		return this.board.toString();
 	}
 }

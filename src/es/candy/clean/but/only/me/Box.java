@@ -9,11 +9,11 @@ package es.candy.clean.but.only.me;
  * @author Alejandro Carballo Casas
  */
 
-public class Casilla {
+public class Box {
 	
 	/**
 	 * 
-	 * Stores the colors in a variable.
+	 * Stores the colors of the box in a variable.
 	 * 
 	 */
 	
@@ -26,7 +26,7 @@ public class Casilla {
 	 * @param boardColors Number of colors that the board has.
 	 */
 	
-	public Casilla(int boardColors)  {
+	public Box(int boardColors)  {
 		
 		int randomNumber = (int) Math.floor(Math.random()*boardColors+1);
 		this.color = new Color(randomNumber);
@@ -39,7 +39,7 @@ public class Casilla {
 	 * @param character Character for choosing the color you want.
 	 */
 	
-	public Casilla (char character) {
+	public Box (char character) {
 		switch (character){
 		case 'r': 
 			this.color = new Color(1);
@@ -61,7 +61,7 @@ public class Casilla {
 	 * 
 	 */
 	
-	public Casilla()  {
+	public Box()  {
 		this.color = new Color(0);
 	   }
 	
@@ -79,7 +79,7 @@ public class Casilla {
 	 * 
 	 * Checks whether the box is black or not.
 	 * 
-	 * @return Wheter the color is black or not.
+	 * @return Whether the color is black or not.
 	 */
 	
 	public boolean isEmpty() {
@@ -116,7 +116,7 @@ public class Casilla {
 	 * @return True if the box is equal to another.
 	 */
 	
-	public boolean equals(Casilla another) {
+	public boolean equals(Box another) {
 		return this.color.equals(another.getColor());
 	}
 }

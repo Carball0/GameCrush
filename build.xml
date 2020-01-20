@@ -41,7 +41,7 @@
 	</target>
     
     <target name="run" depends="compile">				<!--Target run-->
-      <java classname="es.candy.clean.but.only.me.MainCrush">
+      <java classname="es.candy.clean.but.only.me.Main">
          <classpath>
          	<pathelement path="."/>
 			<pathelement path="${classes}"/>

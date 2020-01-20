@@ -1,10 +1,10 @@
 package es.candy.clean.but.only.me;
 
-public class JuegoCrushException extends Exception {
+public class GameCrushException extends Exception {
 	
 	private static final long serialVersionUID = 1L;
 
-	public JuegoCrushException(String msg) {
+	public GameCrushException(String msg) {
 			super(msg);
 	}
 }
